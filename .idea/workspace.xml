@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba43091-f768-4621-986e-03fc5fa5a294" name="Changes" comment="Added the list of instruments">
-      <change afterPath="$PROJECT_DIR$/instruments.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BeatBox.java" afterDir="false" />
+    <list default="true" id="cba43091-f768-4621-986e-03fc5fa5a294" name="Changes" comment="Set up Gui and midi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BeatBoxGUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BeatBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BeatBox.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +83,7 @@
       <updated>1674071018458</updated>
       <workItem from="1674071018916" duration="4497000" />
       <workItem from="1674155808094" duration="1601000" />
-      <workItem from="1675668051777" duration="7327000" />
+      <workItem from="1675668051777" duration="9410000" />
     </task>
     <task id="LOCAL-00001" summary="First Part of BeatBox">
       <created>1674156765830</created>
@@ -101,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675671318561</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Set up Gui and midi">
+      <created>1675675478685</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1675675478685</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,6 +163,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="First Part of BeatBox" />
     <MESSAGE value="Added the list of instruments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the list of instruments" />
+    <MESSAGE value="Set up Gui and midi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Set up Gui and midi" />
   </component>
 </project>
