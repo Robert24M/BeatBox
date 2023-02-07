@@ -86,14 +86,14 @@ public class BeatBox {
         JButton upTempo = new JButton("Tempo Up");
         upTempo.addActionListener(action -> {
             float tempoFactor = sequencer.getTempoFactor();
-            sequencer.setTempoFactor((float) (tempoFactor * 0.97));
+            sequencer.setTempoFactor((float) (tempoFactor * 1.03));
         });
         buttonBox.add(upTempo);
 
         JButton downTempo = new JButton("Tempo down");
         downTempo.addActionListener(action -> {
             float tempoFactor = sequencer.getTempoFactor();
-            sequencer.setTempoFactor((float) (tempoFactor * 1.03));
+            sequencer.setTempoFactor((float) (tempoFactor * 0.97));
         });
         buttonBox.add(downTempo);
 
