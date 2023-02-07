@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba43091-f768-4621-986e-03fc5fa5a294" name="Changes" comment="Finish the logic">
+    <list default="true" id="cba43091-f768-4621-986e-03fc5fa5a294" name="Changes" comment="Final">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BeatBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BeatBox.java" afterDir="false" />
     </list>
@@ -48,6 +48,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -68,6 +69,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.BeatBox" />
         <item itemvalue="Application.MiniMusicCmdLine" />
       </list>
     </recent_temporary>
@@ -83,6 +85,8 @@
       <workItem from="1674071018916" duration="4497000" />
       <workItem from="1674155808094" duration="1601000" />
       <workItem from="1675668051777" duration="10319000" />
+      <workItem from="1675771857502" duration="6331000" />
+      <workItem from="1675798397331" duration="1894000" />
     </task>
     <task id="LOCAL-00001" summary="First Part of BeatBox">
       <created>1674156765830</created>
@@ -112,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675678400051</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Final">
+      <created>1675772066582</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1675772066582</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,6 +182,7 @@
     <MESSAGE value="Added the list of instruments" />
     <MESSAGE value="Set up Gui and midi" />
     <MESSAGE value="Finish the logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish the logic" />
+    <MESSAGE value="Final" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final" />
   </component>
 </project>

@@ -1,15 +1,15 @@
 import javax.sound.midi.*;
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BeatBox {
+public class BeatBox implements Serializable {
     public static void main(String[] args) {
         BeatBox beatBoxGUI = new BeatBox();
         for (String instrument : instruments.keySet()) {
@@ -21,7 +21,7 @@ public class BeatBox {
     private JFrame frame;
     private JPanel panel;
     List<JCheckBox> checkBoxList;
-    private Sequencer sequencer;
+    private transient Sequencer sequencer;
     private Sequence sequence;
     private Track track;
     private static final Map<String, Integer> instruments;
@@ -39,31 +39,6 @@ public class BeatBox {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-//        instruments = new HashMap<>();
-//        instruments.put("Bass Drum", 35);
-//        instruments.put("Closed Hi-Hat", 42);
-//        instruments.put("Open Hi-Hat", 46);
-//        instruments.put("Acoustic Snare", 38);
-//        instruments.put("Crash Cymbal", 49);
-//        instruments.put("Hand Clap", 39);
-//        instruments.put("High Tom", 50);
-//        instruments.put("Hi Bongo", 60);
-//        instruments.put("Maracas", 70);
-//        instruments.put("Whistle", 72);
-//        instruments.put("Low Conga", 64);
-//        instruments.put("Cowbell", 56);
-//        instruments.put("Vibraslap", 58);
-//        instruments.put("Low-mid Tom", 47);
-//        instruments.put("High Agogo", 67);
-//        instruments.put("Open Hi Conga", 63);
-//
-//        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("instruments.txt"))) {
-//            for(String instrument : instruments.keySet()) {
-//                bufferedWriter.write(instrument + "," + instruments.get(instrument) + "\n");
-//            }
-//        }catch (IOException e) {
-//            System.out.println(e.getMessage());
-//        }
     }
 
     public void buildGui() {
@@ -96,6 +71,32 @@ public class BeatBox {
             sequencer.setTempoFactor((float) (tempoFactor * 0.97));
         });
         buttonBox.add(downTempo);
+        JTextField nameToSave = new JFormattedTextField();
+
+        JButton save = new JButton("Save");
+        buttonBox.add(save);
+
+//        Temporary implementation
+//        final boolean[] firstPress = {true};
+        save.addActionListener(action -> {
+            String result = (String) JOptionPane.showInputDialog(
+                    frame,
+                    "Enter a name",
+                    "Save",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    null,
+                    ""
+            );
+            if (result != null && result.length() > 0) {
+                try (ObjectOutputStream outputStream = new ObjectOutputStream(
+                        new BufferedOutputStream(Files.newOutputStream(Paths.get(result + ".ser"))))) {
+                    outputStream.writeObject(this);
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        });
 
         Box nameBox = new Box(BoxLayout.Y_AXIS);
         instruments.keySet().forEach(instrument -> nameBox.add(new Label(instrument)));
@@ -159,10 +160,10 @@ public class BeatBox {
             }
             count++;
             makeTracks(trackList);
-            track.add(makeEvent(176,1,127,0,16));
+            track.add(makeEvent(176, 1, 127, 0, 16));
         }
 
-        track.add(makeEvent(192,9,1,0,15));
+        track.add(makeEvent(192, 9, 1, 0, 15));
 
         try {
             sequencer.setSequence(sequence);
