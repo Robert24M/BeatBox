@@ -212,8 +212,10 @@ public class BeatBox implements Serializable {
 
     private void restoreFile(File file) {
         try (ObjectInputStream read = new ObjectInputStream(new BufferedInputStream(Files.newInputStream(file.toPath())))) {
-            checkBoxList = (ArrayList<JCheckBox>) read.readObject();
-            frame.repaint();
+            List<JCheckBox> restoredBeat = (ArrayList<JCheckBox>) read.readObject();
+            for(int i = 0; i < checkBoxList.size(); i++) {
+                checkBoxList.get(i).setSelected(restoredBeat.get(i).isSelected());
+            }
         } catch (IOException | ClassNotFoundException | ClassCastException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());

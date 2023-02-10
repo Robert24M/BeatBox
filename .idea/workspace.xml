@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cba43091-f768-4621-986e-03fc5fa5a294" name="Changes" comment="Start implementing a way to save the beats">
+    <list default="true" id="cba43091-f768-4621-986e-03fc5fa5a294" name="Changes" comment="Add a way to save and restore the beats">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BeatBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BeatBox.java" afterDir="false" />
     </list>
@@ -187,6 +187,7 @@
     <MESSAGE value="Finish the logic" />
     <MESSAGE value="Final" />
     <MESSAGE value="Start implementing a way to save the beats" />
-    <option name="LAST_COMMIT_MESSAGE" value="Start implementing a way to save the beats" />
+    <MESSAGE value="Add a way to save and restore the beats" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add a way to save and restore the beats" />
   </component>
 </project>
