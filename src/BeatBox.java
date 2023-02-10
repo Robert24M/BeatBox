@@ -1,23 +1,15 @@
 import javax.sound.midi.*;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class BeatBox implements Serializable {
-    public static void main(String[] args) {
-        BeatBox beatBoxGUI = new BeatBox();
-        for (String instrument : instruments.keySet()) {
-            System.out.println(instrument + " " + instruments.get(instrument));
-        }
-        beatBoxGUI.buildGui();
-    }
-
     private JFrame frame;
     private JPanel panel;
     List<JCheckBox> checkBoxList;
@@ -26,7 +18,19 @@ public class BeatBox implements Serializable {
     private Track track;
     private static final Map<String, Integer> instruments;
 
+    private static final File dir;
+
+    public static void main(String[] args) {
+        BeatBox beatBoxGUI = new BeatBox();
+        for (String instrument : instruments.keySet()) {
+            System.out.println(instrument + " " + instruments.get(instrument));
+        }
+        beatBoxGUI.buildGui();
+    }
+
     static {
+        dir = new File("C:\\Users\\micur\\Documents\\Beats");
+        dir.mkdir();
         instruments = new HashMap<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("instruments.txt"))) {
             String input;
@@ -71,32 +75,32 @@ public class BeatBox implements Serializable {
             sequencer.setTempoFactor((float) (tempoFactor * 0.97));
         });
         buttonBox.add(downTempo);
-        JTextField nameToSave = new JFormattedTextField();
 
         JButton save = new JButton("Save");
-        buttonBox.add(save);
-
-//        Temporary implementation
-//        final boolean[] firstPress = {true};
         save.addActionListener(action -> {
-            String result = (String) JOptionPane.showInputDialog(
-                    frame,
-                    "Enter a name",
-                    "Save",
-                    JOptionPane.PLAIN_MESSAGE,
-                    null,
-                    null,
-                    ""
-            );
-            if (result != null && result.length() > 0) {
-                try (ObjectOutputStream outputStream = new ObjectOutputStream(
-                        new BufferedOutputStream(Files.newOutputStream(Paths.get(result + ".ser"))))) {
-                    outputStream.writeObject(this);
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                }
+            JFileChooser fileSave = new JFileChooser();
+            fileSave.setDialogTitle("Save the beat");
+            fileSave.setCurrentDirectory(dir);
+            fileSave.showDialog(frame, "Save");
+            if (fileSave.getSelectedFile() != null) {
+                saveFile(fileSave.getSelectedFile());
             }
         });
+        buttonBox.add(save);
+
+        JButton restore = new JButton("Restore");
+        restore.addActionListener(action -> {
+            JFileChooser selectFile = new JFileChooser();
+            selectFile.setDialogTitle("Select a file");
+            selectFile.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            selectFile.setCurrentDirectory(dir);
+            selectFile.addChoosableFileFilter(new FileNameExtensionFilter("Serializable","ser"));
+            selectFile.showDialog(frame, "Open");
+            if (selectFile.getSelectedFile() != null) {
+                restoreFile(selectFile.getSelectedFile());
+            }
+        });
+        buttonBox.add(restore);
 
         Box nameBox = new Box(BoxLayout.Y_AXIS);
         instruments.keySet().forEach(instrument -> nameBox.add(new Label(instrument)));
@@ -196,5 +200,23 @@ public class BeatBox implements Serializable {
             System.out.println(e.getMessage());
         }
         return event;
+    }
+
+    private void saveFile(File file) {
+        try (ObjectOutputStream writer = new ObjectOutputStream(new BufferedOutputStream(Files.newOutputStream(file.toPath())))) {
+            writer.writeObject(checkBoxList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void restoreFile(File file) {
+        try (ObjectInputStream read = new ObjectInputStream(new BufferedInputStream(Files.newInputStream(file.toPath())))) {
+            checkBoxList = (ArrayList<JCheckBox>) read.readObject();
+            frame.repaint();
+        } catch (IOException | ClassNotFoundException | ClassCastException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
     }
 }
